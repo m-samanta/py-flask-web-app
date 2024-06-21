@@ -18,7 +18,11 @@ def get_weather():
         city = "Toronto"
 
     weather_data = get_current_weather(city)
-    
+
+    # City is not found by API
+    if not weather_data['cod'] == 200:
+        return "City not found"
+
     return render_template(
         "weather.html",
         title=weather_data["name"],
